@@ -7,8 +7,9 @@ import java.util.*;
 
 public class MED {
 
-	public static boolean compare(String A, String B){
+	public static void compare(String A, String B){
 		boolean result;
+		
 		int[][] table = new int[A.length()+1][B.length()+1];
 		for (int i = 0; i <= A.length(); i++){
 			table[i][0] = i;
@@ -48,18 +49,15 @@ public class MED {
 			System.out.println();
 		}
 
-		return false;
+		int MED = table[A.length()][B.length()];
+		System.out.println("Minimum Edit Distance B/W " + A + " and " + B + " is: " + MED);
 	}
 
     public static void main(String[] args) {
-    	String spoof = "execution";
-    	String stool = "intention";
-    	
-    	//System.out.println(spoof.substring(0,0).equals(stool.substring(0,0)));
-    	
-    	compare(spoof, stool);
-
-    	System.out.println("Hello");
+    	compare("spoof", "stool");
+    	compare("podiatrist", "pediatrician");
+    	compare("blaming", "conning");
+    	compare("execution", "intention");
     }
 
 }
