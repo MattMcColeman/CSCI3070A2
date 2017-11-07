@@ -20,22 +20,22 @@ public class MED {
 		}
 		for (int i = 1; i <= A.length(); i++){
 			for (int j = 1; j <= B.length(); j++){
-				String Ac = A.substring(i,i);
-				String Bc = B.substring(j,j);
+				String Ac = A.substring(i-1,i);
+				String Bc = B.substring(j-1,j);
 				result = Ac.equals(Bc);
 				//System.out.print(result);
 				int x = table[i-1][j];
 				int y = table[i][j-1];
 				int z = table[i-1][j-1];
-				if(x < y && x < z){
+				if(x <= y && x <= z){
 					table[i][j] = x + 1;
-				} else if(y < x && y < z){
+				} else if(y <= x && y <= z){
 					table[i][j] = y + 1;
 				}else{
 					if(result){
-						table[i][j] = z + 2;
-					}else{
 						table[i][j] = z;
+					}else{
+						table[i][j] = z + 2;
 					}
 				}
 			}
