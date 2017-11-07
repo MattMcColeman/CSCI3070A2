@@ -6,14 +6,24 @@
 import java.util.*;
 
 
-public class MED {
-    public static void main(String[] args) {
-    	int arr[] = {1, 6, 3, 4, 14};
 
-    	for(int i = 0; i<arr.length; i++){
-    		System.out.print(arr[i]+"|");
-    	}
-    	System.out.println();
+
+public class MED {
+	public static boolean compare(String A, String B){
+		boolean result;
+
+		result = (A.substring(0,0).equals(B.substring(0,0)));
+		System.out.println(result);
+		return result;
+	}
+
+    public static void main(String[] args) {
+    	String spoof = "spoof";
+    	String stool = "stool";
+    	
+    	//System.out.println(spoof.substring(0,0).equals(stool.substring(0,0)));
+    	
+    	compare(spoof, stool);
 
     	System.out.println("Hello");
     }
