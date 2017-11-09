@@ -57,10 +57,25 @@ public class Radix {
 
 	}
 
+	public static void radSort(int[] A){
+
+		for(int i = 0; i < A.length; i++){
+			
+		}
+
+	}
+
+	public static int getDigit(int num, int digit){
+		int working = num / (10^(digit-1));
+		return working % 10;
+	}
+
     public static void main(String[] args) {
     	int arrA[] = {1, 4, 1, 2, 7, 5, 2};
+    	int arrQ[] = {123456, 234567, 102938, 576857, 999999, 000001, 444444};
     	
     	countsort(arrA);
+    	radSort(arrQ);
 
 
     	System.out.println("Hello");
