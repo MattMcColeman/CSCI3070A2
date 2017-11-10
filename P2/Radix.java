@@ -11,9 +11,9 @@ public class Radix {
 
 	public static int[] countsort(int[] Z, int D){
 		for(int i = 0; i < Z.length; i++){
-			System.out.print(Z[i] + "|Z");
+			//System.out.print(Z[i] + "|Z");
 		}
-		System.out.println();
+		//System.out.println();
 
 		int A[] = new int[Z.length];
 
@@ -23,17 +23,17 @@ public class Radix {
 			//A[i] = getDigit(Z[i], D);
 			A[i] = (Z[i]/(int)((Math.pow(10, D))))%10;
 			
-			System.out.print(A[i] + "|*");
+			//System.out.print(A[i] + "|*");
 		}
-		System.out.println();
+		//System.out.println();
 
 		for(int i = 0; i < Z.length; i++){
 			//System.out.println(getDigit(Z[i], D));
 			//A[i] = getDigit(Z[i], D);
 			
-			System.out.print(Z[i]/(10^(D))%10 + "|");
+			//System.out.print(Z[i]/(10^(D))%10 + "|");
 		}
-		System.out.println();
+		//System.out.println();
 
 		//final array of whole digit nums sorted by current digit
 		int G[] = new int[Z.length];
@@ -41,7 +41,7 @@ public class Radix {
 		for(int i = 0; i < A.length; i++){
 			//System.out.print(A[i]+"|");
 		}
-		System.out.println();
+		//System.out.println();
 		//find max element of array to determine auxilary array size
 		int max = A[0];
 
@@ -63,7 +63,7 @@ public class Radix {
 		for(int i = 0; i < arrX.length; i++){
 			//System.out.print(arrX[i]+"|");
 		}
-		System.out.println();
+		//System.out.println();
 		//adds the previous array slots value to current slot looping left to right
 		for(int i = 1; i < arrX.length; i++){
 			arrX[i]=arrX[i]+arrX[i-1];
@@ -72,7 +72,7 @@ public class Radix {
 		for(int i = 0; i < arrX.length; i++){
 			//System.out.print(arrX[i]+"|");
 		}
-		System.out.println();
+		//System.out.println();
 		//uses original array value to go to the index in the asceding array 
 		//then adds index value to final array at the slot value index of final array
 		for(int i = A.length-1; i >= 0; i--){
@@ -82,12 +82,14 @@ public class Radix {
 		}
 
 		for(int i = 0; i < arrY.length; i++){
-			System.out.print(arrY[i]+"|-");
+			//System.out.print(arrY[i]+"|-");
 		}
-		System.out.println();
+		//System.out.println();
+
+		System.out.println("The " + Math.pow(10, D) + "\'s Digit column sorts the array with counting sort to produce the following");
 
 		for(int i = 0; i < G.length; i++){
-			System.out.print(G[i]+"|G");
+			System.out.print(G[i]+"|");
 		}
 		System.out.println();
 
@@ -96,44 +98,23 @@ public class Radix {
 	}
 
 	public static int[] radSort(int[] A, int D){
+
+		System.out.println("The input array is: ");
+
+		for (int i = 0; i < D; i++) {
+			System.out.print(A[i] + "|");
+		}
+		System.out.println();
+
 		for (int i = 0; i<D; i++) {
 			//A = countsort(A[i], i);
 			A = countsort(A, i);
 			//System.out.print(A[i]+"|");
 		}
-		System.out.println();
+		//System.out.println();
 		return A;
 	}
 
-	/*
-	public static int[] radSort(int[] A, int D){
-		//find nuber of digits
-		//int length = String.valueOf(A[0]).length();
-		//System.out.println(length);
-
-		int[] T = new int[A.length];
-
-		for(int i = 0; i < A.length; i++){
-			//System.out.print(A[i]+"|");
-		}
-		//System.out.println();
-
-		D = D - 1;
-		
-		if(D>0){	
-			T = countsort(A, D);
-			radSort(T, D);
-		}
-
-
-		for(int i = 0; i < A.length; i++){
-			//System.out.print(T[i]+"|");
-		}
-		//System.out.println();
-
-		return T;
-	}
-*/
 	public static int getDigit(int num, int digit){
 		int working = num / (10^(digit-1));
 		//System.out.println(working % 10);
@@ -150,12 +131,12 @@ public class Radix {
     	//countsort(arrQ, 6);
     	Final = radSort(arrQ, 6);
 
+    	System.out.println("Radix Sort produces the following array: ");
+
     	for(int i = 0; i < Final.length; i++){
 			System.out.print(Final[i]+"|");
 		}
 		System.out.println();
-
-    	System.out.println("Hello");
     }
 
 }
