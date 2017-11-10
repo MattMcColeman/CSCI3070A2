@@ -4,19 +4,34 @@
 **Date: 
 **/
 import java.util.*;
+import java.io.*;
 
 
 public class Radix {
 
 	public static int[] countsort(int[] Z, int D){
+		for(int i = 0; i < Z.length; i++){
+			System.out.print(Z[i] + "|Z");
+		}
+		System.out.println();
 
 		int A[] = new int[Z.length];
+
 		//copy sigle digit into an array to the guide to how to rearrange Z
 		for(int i = 0; i < Z.length; i++){
 			//System.out.println(getDigit(Z[i], D));
 			//A[i] = getDigit(Z[i], D);
-			A[i] = Z[i]/(10^(D))%10;
+			A[i] = (Z[i]/(10^(D)))%10;
+			
 			System.out.print(A[i] + "|");
+		}
+		System.out.println();
+
+		for(int i = 0; i < Z.length; i++){
+			//System.out.println(getDigit(Z[i], D));
+			//A[i] = getDigit(Z[i], D);
+			
+			System.out.print(Z[i]/(10^(D))%10 + "|");
 		}
 		System.out.println();
 
@@ -67,18 +82,30 @@ public class Radix {
 		}
 
 		for(int i = 0; i < arrY.length; i++){
-			System.out.print(arrY[i]+"|");
+			System.out.print(arrY[i]+"|-");
+		}
+		System.out.println();
+
+		for(int i = 0; i < G.length; i++){
+			System.out.print(G[i]+"|G");
 		}
 		System.out.println();
 
 		return G;
 
 	}
-/*
-	public static int[] radSort(int[] A, int D){
 
+	public static int[] radSort(int[] A, int D){
+		for (int i = 0; i<D; i++) {
+			//A = countsort(A[i], i);
+			A = countsort(A, i);
+			//System.out.print(A[i]+"|");
+		}
+		System.out.println();
+		return A;
 	}
-*/
+
+	/*
 	public static int[] radSort(int[] A, int D){
 		//find nuber of digits
 		//int length = String.valueOf(A[0]).length();
@@ -87,9 +114,9 @@ public class Radix {
 		int[] T = new int[A.length];
 
 		for(int i = 0; i < A.length; i++){
-			System.out.print(A[i]+"|");
+			//System.out.print(A[i]+"|");
 		}
-		System.out.println();
+		//System.out.println();
 
 		D = D - 1;
 		
@@ -100,13 +127,13 @@ public class Radix {
 
 
 		for(int i = 0; i < A.length; i++){
-			System.out.print(T[i]+"|");
+			//System.out.print(T[i]+"|");
 		}
-		System.out.println();
+		//System.out.println();
 
-		return A;
+		return T;
 	}
-
+*/
 	public static int getDigit(int num, int digit){
 		int working = num / (10^(digit-1));
 		//System.out.println(working % 10);
