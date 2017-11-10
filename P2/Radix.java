@@ -21,9 +21,9 @@ public class Radix {
 		for(int i = 0; i < Z.length; i++){
 			//System.out.println(getDigit(Z[i], D));
 			//A[i] = getDigit(Z[i], D);
-			A[i] = (Z[i]/(10^(D)))%10;
+			A[i] = (Z[i]/(int)((Math.pow(10, D))))%10;
 			
-			System.out.print(A[i] + "|");
+			System.out.print(A[i] + "|*");
 		}
 		System.out.println();
 
@@ -75,7 +75,7 @@ public class Radix {
 		System.out.println();
 		//uses original array value to go to the index in the asceding array 
 		//then adds index value to final array at the slot value index of final array
-		for(int i = 0; i < A.length; i++){
+		for(int i = A.length-1; i >= 0; i--){
 			arrY[arrX[A[i]]-1]=A[i];
 			G[arrX[A[i]]-1]=Z[i]; //allot full nums into new spots
 			arrX[A[i]]=arrX[A[i]]-1;
@@ -144,6 +144,7 @@ public class Radix {
     public static void main(String[] args) {
     	//int arrQ[] = {1, 4, 1, 2, 7, 5, 2};
     	int arrQ[] = {123456, 123456, 654321, 444444, 939393, 393939, 111113};
+    	//int arrQ[] = {100000, 200000, 300000, 700000, 600000, 500000, 400000};
     	int Final[];
     	
     	//countsort(arrQ, 6);
