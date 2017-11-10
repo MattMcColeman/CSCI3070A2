@@ -19,19 +19,11 @@ public class Radix {
 
 		//copy sigle digit into an array to the guide to how to rearrange Z
 		for(int i = 0; i < Z.length; i++){
-			//System.out.println(getDigit(Z[i], D));
-			//A[i] = getDigit(Z[i], D);
-			A[i] = (Z[i]/(int)((Math.pow(10, D))))%10;
-			
-			//System.out.print(A[i] + "|*");
+			A[i] = (Z[i]/(int)((Math.pow(10, D))))%10; // returns current digit to be sorted
 		}
-		//System.out.println();
 
-		for(int i = 0; i < Z.length; i++){
-			//System.out.println(getDigit(Z[i], D));
-			//A[i] = getDigit(Z[i], D);
-			
-			//System.out.print(Z[i]/(10^(D))%10 + "|");
+		for(int i = 0; i < A.length; i++){
+			//System.out.print(A[i]);
 		}
 		//System.out.println();
 
@@ -100,8 +92,8 @@ public class Radix {
 	public static int[] radSort(int[] A, int D){
 
 		System.out.println("The input array is: ");
-
-		for (int i = 0; i < D; i++) {
+		//runs counting sort for each digit
+		for (int i = 0; i < A.length; i++) {
 			System.out.print(A[i] + "|");
 		}
 		System.out.println();
@@ -115,13 +107,6 @@ public class Radix {
 		return A;
 	}
 
-	public static int getDigit(int num, int digit){
-		int working = num / (10^(digit-1));
-		//System.out.println(working % 10);
-		int H = working % 10;
-		return H;
-	}
-
     public static void main(String[] args) {
     	//int arrQ[] = {1, 4, 1, 2, 7, 5, 2};
     	int arrQ[] = {123456, 123456, 654321, 444444, 939393, 393939, 111113};
@@ -131,6 +116,7 @@ public class Radix {
     	//countsort(arrQ, 6);
     	Final = radSort(arrQ, 6);
 
+    	System.out.println();
     	System.out.println("Radix Sort produces the following array: ");
 
     	for(int i = 0; i < Final.length; i++){
