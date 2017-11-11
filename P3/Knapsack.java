@@ -9,12 +9,12 @@
 import java.util.*;
 
 class MyValuePair {
-    private int intValue;
-    private int intWeight;
+    private double intValue;
+    private double intWeight;
     private String strName;
     private double fraction;
 
-    MyValuePair(int intValue, int intWeight, String strName, double fraction) {
+    MyValuePair(double intValue, double intWeight, String strName, double fraction) {
         this.intValue = intValue;
         this.intWeight = intWeight;
         this.strName = strName;
@@ -26,11 +26,11 @@ class MyValuePair {
         return "(" + intValue + ", " + intWeight + ", " + strName + ", " + fraction + ")";
     }
 
-    public int getIntValue(){
+    public double getIntValue(){
     	return this.intValue;
     }
 
-	public int getIntWeight(){
+	public double getIntWeight(){
 		return this.intWeight;
 	}
 
@@ -99,7 +99,7 @@ public class Knapsack {
         System.out.println(map);
 
         //temp for calculating object weight
-        MyValuePair temp;
+        MyValuePair temp = Empty;
         //bag can hold 20lbs
         int bagCapacity = 20;
         int weight = 0;
@@ -120,9 +120,9 @@ public class Knapsack {
         	count++;
         }
 
-        double itemFrac = (bagCapacity - lastWeight)/temp.getIntWeight();
-        int itemFracVal = itemFrac * (int)temp.getIntValue();
-        knapSack[count] = new MyValuePair(temp.getIntValue(), temp.getIntWeight(), temp.getName(), itemFrac);
+        double itemFrac = (bagCapacity - lastWeight) / temp.getIntWeight();
+        double itemFracVal = itemFrac * temp.getIntValue();
+        knapSack[count-1] = new MyValuePair(temp.getIntValue(), temp.getIntWeight(), temp.getName(), itemFrac);
 
         System.out.print("Final Knapsack now Holds the following: ");
         for(int i = 0; i < count; i++){
