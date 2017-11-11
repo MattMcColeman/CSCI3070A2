@@ -12,16 +12,18 @@ class MyValuePair {
     private int intValue;
     private int intWeight;
     private String strName;
+    private double fraction;
 
-    MyValuePair(int intValue, int intWeight, String strName) {
+    MyValuePair(int intValue, int intWeight, String strName, double fraction) {
         this.intValue = intValue;
         this.intWeight = intWeight;
         this.strName = strName;
+        this.fraction = fraction;
     }
 
     //Getter and Setter as well as constructor(s) as needed
     public String toString() {
-        return "(" + intValue + ", " + intWeight + ", " + strName + ")";
+        return "(" + intValue + ", " + intWeight + ", " + strName + ", " + fraction + ")";
     }
 
     public int getIntValue(){
@@ -70,7 +72,7 @@ public class Knapsack {
 
         MyValuePair Y;
         Y = P[Opt];
-        Arr[Opt] = new MyValuePair(1, 1010, "Empty");
+        Arr[Opt] = new MyValuePair(1, 1010, "Empty", 1);
         return Y;
     }
 
@@ -78,25 +80,19 @@ public class Knapsack {
     static MyValuePair[] knapSack = new MyValuePair[4];
 
     public static void main(String[] args) {
-        MyValuePair Jade = new MyValuePair(30, 8, "Jade");
-        MyValuePair Gold = new MyValuePair(20, 6, "Gold");
-        MyValuePair Diamond = new MyValuePair(40, 12, "Diamond");
-        MyValuePair Bronze = new MyValuePair(10, 5, "Bronze");
-        //map.put("Jade", Jade);
-        //map.put("Gold", Gold);
-        //map.put("Diamond", Diamond);
-        //map.put("Bronze", Bronze);
-        MyValuePair Phil = new MyValuePair(0, 0, "Empty");
-
-        
+        MyValuePair Jade = new MyValuePair(30, 8, "Jade", 1);
+        MyValuePair Gold = new MyValuePair(20, 6, "Gold", 1);
+        MyValuePair Diamond = new MyValuePair(40, 12, "Diamond", 1);
+        MyValuePair Bronze = new MyValuePair(10, 5, "Bronze", 1);
+        MyValuePair Empty = new MyValuePair(0, 0, "Empty", 1);
         Arr[0] = Jade;
         Arr[1] = Gold;
         Arr[2] = Diamond;
         Arr[3] = Bronze;
-        knapSack[0] =  Phil;
-        knapSack[1] =  Phil;
-        knapSack[2] =  Phil;
-        knapSack[3] =  Phil;
+        knapSack[0] = Empty;
+        knapSack[1] = Empty;
+        knapSack[2] = Empty;
+        knapSack[3] = Empty;
 
         System.out.println(Jade.getIntWeight());
 
@@ -107,6 +103,7 @@ public class Knapsack {
         //bag can hold 20lbs
         int bagCapacity = 20;
         int weight = 0;
+        int lastWeight = 0;
         int count = 0;
 
         while(weight < bagCapacity){
@@ -116,11 +113,16 @@ public class Knapsack {
         	System.out.println();
         	temp = optimalObject(Arr);
         	System.out.println(temp + "<--MAX");
+        	lastWeight = weight;
         	weight += temp.getIntWeight();
         	System.out.println(weight + "<--weight");
         	System.out.println(count + "<--count");
         	count++;
         }
+
+        double itemFrac = (bagCapacity - lastWeight)/temp.getIntWeight();
+        int itemFracVal = itemFrac * (int)temp.getIntValue();
+        knapSack[count] = new MyValuePair(temp.getIntValue(), temp.getIntWeight(), temp.getName(), itemFrac);
 
         System.out.print("Final Knapsack now Holds the following: ");
         for(int i = 0; i < count; i++){
@@ -128,24 +130,6 @@ public class Knapsack {
        	}
        	System.out.println();
 
-
-        for(int i = 0; i < Arr.length; i++){
-
-        }
-        /*
-	    Iterator it = map.entrySet().iterator();
-	    while (bag > 0) {
-	        Map.Entry pair = (Map.Entry)it.next();
-	        System.out.println((Map.Entry)it.next());
-	        System.out.print(pair.getKey() + " = " + pair.getValue() + "| ");
-	        it.remove(); // avoids a ConcurrentModificationException
-		    bag -= 10;//bag - temp.getIntWeight(); //determines how full bag is
-		    map.remove(pair.getKey());
-	        System.out.println(map);
-	    }
-		System.out.println();
-	*/
-	    //System.out.println(map);
     }
 
 }
