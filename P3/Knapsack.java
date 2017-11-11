@@ -22,6 +22,10 @@ class MyValuePair {
         return "(" + intValue + ", " + intWeight + ")";
     }
 
+    public int getIntValue(){
+    	return this.intValue;
+    }
+
 	public int getIntWeight(){
 		return this.intWeight;
 	}
@@ -33,16 +37,23 @@ public class Knapsack {
     static Map<String, MyValuePair> map = new HashMap<>();
 
     public static MyValuePair optimalObject(MyValuePair[] P){
-    	int W = P[0].getIntWeight();
+    	double W = P[0].getIntWeight();
+    	double V = P[0].getIntValue();
+    	double E = V/W;
     	int Opt = 0;
+    	System.out.println(P[0]);
+    	System.out.println(E);
     	for(int i = 1; i < P.length; i++){
         	System.out.println(P[i]);
-        	
-        	if(W > 0){
-        		W = P[i].getIntWeight();
+        	W = P[i].getIntWeight();
+        	V = P[i].getIntValue();
+
+        	double F = V/W;
+        	if(F>E){
         		Opt = i;
         	}
-        	System.out.println(P[i].getIntWeight());
+        	E = F;
+        	System.out.println(E);
         }
         return P[Opt];
     }
