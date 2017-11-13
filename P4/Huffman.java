@@ -29,9 +29,19 @@ public class Huffman {
     	return fileString;
 	}
 
+	public static int characterValue(String doc, int place){
+		String character = doc.substring(place, place+1);
+		char c = doc.charAt(0);
+		int ascii = (int) c;
+		return ascii;
+	}
+
     public static void main(String[] args) {
 
     	String fileString = fileToString("manifest.mf");
+
+    	int c = characterValue(fileString, 0);
+    	System.out.println(c);
 
     	System.out.println(fileString.substring(0, 6));
     	System.out.println("Hello");
