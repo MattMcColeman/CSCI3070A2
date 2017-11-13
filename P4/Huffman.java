@@ -31,17 +31,33 @@ public class Huffman {
 
 	public static int characterValue(String doc, int place){
 		String character = doc.substring(place, place+1);
-		char c = doc.charAt(0);
+		char c = doc.charAt(place);
 		int ascii = (int) c;
 		return ascii;
 	}
+
+	public static void frequencyTable(String doc){
+		for(int i = 0; i<doc.length(); i++){
+			int c = characterValue(doc, i);
+			ASCII[c]+=1;
+		}
+	}
+
+	public static void printArray(int[] Arr){
+		for(int i = 0; i < Arr.length; i++){
+			System.out.print(Arr[i]);
+		}
+		System.out.println();
+	}
+
+	static int[] ASCII = new int[128];
 
     public static void main(String[] args) {
 
     	String fileString = fileToString("manifest.mf");
 
-    	int c = characterValue(fileString, 0);
-    	System.out.println(c);
+    	frequencyTable(fileString);
+    	printArray(ASCII);
 
     	System.out.println(fileString.substring(0, 6));
     	System.out.println("Hello");
