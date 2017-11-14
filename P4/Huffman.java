@@ -59,6 +59,7 @@ public class Huffman {
 		return ascii;
 	}
 
+	//scans through string to find number of occurences for each character
 	public static void frequencyTable(String doc){
 		for(int i = 0; i<doc.length(); i++){
 			int c = characterValue(doc, i);
@@ -66,6 +67,7 @@ public class Huffman {
 		}
 	}
 
+	//copies values from frequency table to array list eliminating any charactes with a zero value
 	public static void initializeHeap(int[] ASCII){
 		for(int i = 0; i < ASCII.length; i++){
 			if(ASCII[i] > 0){
@@ -76,11 +78,13 @@ public class Huffman {
 		}
 	}
 
+	//takes two nodes and joins their values to create a new node while preserving the children
 	public static MyNode createParent(MyNode A, MyNode B){
 		MyNode X = new MyNode(A.getLetter()+B.getLetter(), A.getFreq()+B.getFreq());
 		return X;
 	}
 
+	//finds the element with the lowest freq value and returns and pops it from the arraylist
 	public static MyNode extractMin(ArrayList<MyNode> Arr){
 		MyNode minNode = Arr.get(0); //temp node to initialize min
 		MyNode temp;
@@ -98,6 +102,7 @@ public class Huffman {
 		return minNode;
 	}
 
+	//orders arraylist into heap
 	public static void buildHeap(ArrayList<MyNode> Arr){
 		for(int i = (Arr.size()/2)-1; i >= 0; i--){
 			//System.out.println(obj + "obj");
@@ -105,6 +110,7 @@ public class Huffman {
 		}
 	}
 
+	//places largest freq at top of heap
 	public static void maxHeapify(ArrayList<MyNode> Arr, int x){
 		int largest = x;
 		int l = 2*x+1;
@@ -127,17 +133,18 @@ public class Huffman {
 		}
 	}
 
-	public static void heapInsert(MyNode node){
-		Heap.add(node);
-	}
-
+	//takes frequency table and converts it into a heap
+	//iteratively takes the two smallest freq table values
+	//then joins them to make a parent node
+	//children are added to Heap
+	//Parent is insertedback into freq table
 	public static void Huff(){
 		if(obj.size() > 1){
 			MyNode L = extractMin(obj);
 			MyNode R = extractMin(obj);
 			MyNode P = createParent(L, R);
 			obj.add(P); //adds parent back to original arraylist
-			//place these 3 nodes into heap
+			//place these 2 child nodes into heap
 			Heap.add(L);
 			Heap.add(R);
 			//Heap.add(P);
@@ -173,7 +180,15 @@ public class Huffman {
 		System.out.println(Arr.get(Q));
 	}
 */
+	//traverse tree to leaf node printing O or 1 whether going Left or Right
+	//print leaf node char value and prefix code
 	public static void prefix(ArrayList<MyNode> Arr){
+
+	}
+
+	//replace characters in doc with prefix codes and calc size of doc in bits
+	//this can then be compares to original doc size
+	public static void lengthFile(){
 
 	}
 
@@ -194,11 +209,12 @@ public class Huffman {
     		System.out.println(Heap+"Heap");
     		Huff();
     	}
+    	buildHeap(Heap);
        	System.out.println(obj);
     	System.out.println(Heap);
+    	prefix(Heap);
+    	lengthFile();
     	//printAsTree(Heap);
-    	System.out.println(fileString.substring(0, 6));
-    	System.out.println("Hello");
     }
 
 }
