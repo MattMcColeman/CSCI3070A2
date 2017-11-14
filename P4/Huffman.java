@@ -155,6 +155,27 @@ public class Huffman {
 		}
 		System.out.println();
 	}
+/*
+	public static void printAsTree(ArrayList<MyNode> Arr){
+		int Q = 0;
+
+		for(int i = 0; i<Math.sqrt(Arr.size()-1); i++){
+			for(int j = (int)Math.pow(2,i); j > 0; j--){
+				if(Q>=Arr.size()-1){
+					System.out.println();
+					return;
+				}
+				System.out.print("|"+Arr.get(Q)+"|");
+				Q++;
+			}
+			System.out.println();
+		}
+		System.out.println(Arr.get(Q));
+	}
+*/
+	public static void prefix(ArrayList<MyNode> Arr){
+
+	}
 
 	static int[] ASCII = new int[128];
 	static ArrayList<MyNode> obj = new ArrayList<MyNode>();
@@ -175,6 +196,7 @@ public class Huffman {
     	}
        	System.out.println(obj);
     	System.out.println(Heap);
+    	//printAsTree(Heap);
     	System.out.println(fileString.substring(0, 6));
     	System.out.println("Hello");
     }
