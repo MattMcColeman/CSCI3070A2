@@ -81,6 +81,38 @@ public class Huffman {
 		obj.add(X);
 	}
 
+	public static MyNode extractMin(ArrayList<MyNode> Arr){
+		MyNode minNode = Arr.get(0); //temp node to initialize min
+		MyNode temp;
+		int min = minNode.getFreq(); //first min freq value
+		int place = 0;
+		for(int i = 0; i < Arr.size(); i++){
+			temp = Arr.get(i);
+			if(temp.getFreq() < min){
+				min = temp.getFreq();
+				place = i;
+			}
+		}
+		minNode = Arr.get(place);
+		obj.remove(Arr.get(place));
+		return minNode;
+	}
+
+	public static void buildHeap(ArrayList<MyNode> Arr){
+		for(int i = (Arr.size()/2)-1; i >= 0; i--){
+
+		}
+	}
+
+	public static void maxHeapify(ArrayList<MyNode> Arr, int x){
+
+	}
+
+	public static void heapInsert(ArrayList<MyNode> Arr, MyNode node){
+		Heap.add(node);
+		MyNode X = Arr.get(0);
+	}
+
 	public static void printArray(int[] Arr){
 		for(int i = 0; i < Arr.length; i++){
 			System.out.print(Arr[i]);
@@ -90,6 +122,7 @@ public class Huffman {
 
 	static int[] ASCII = new int[128];
 	static ArrayList<MyNode> obj = new ArrayList<MyNode>();
+	static ArrayList<MyNode> Heap = new ArrayList<MyNode>();
 
     public static void main(String[] args) {
 
@@ -100,6 +133,8 @@ public class Huffman {
     	initializeHeap(ASCII);
     	System.out.println(obj);
     	createParent(obj.get(0), obj.get(1));
+    	System.out.println(obj);
+    	System.out.println(extractMin(obj));
     	System.out.println(obj);
     	System.out.println(fileString.substring(0, 6));
     	System.out.println("Hello");
