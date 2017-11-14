@@ -15,6 +15,29 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files; 
 import java.nio.file.Paths;
 
+class MyNode {
+    private String letter;
+    private int freq;
+
+    MyNode(String letter, int freq) {
+        this.letter = letter;
+        this.freq = freq;
+    }
+
+    //Getter and Setter as well as constructor(s) as needed
+    public String toString() {
+        return "(" + letter + ", " + freq + ")";
+    }
+
+    public String getLetter(){
+    	return this.letter;
+    }
+
+	public int getFreq(){
+		return this.freq;
+	}
+}
+
 
 public class Huffman {
 
@@ -43,6 +66,21 @@ public class Huffman {
 		}
 	}
 
+	public static void initializeHeap(int[] ASCII){
+		for(int i = 0; i < ASCII.length; i++){
+			if(ASCII[i] > 0){
+				String abc = String.valueOf((char)i);
+				MyNode X = new MyNode(abc, ASCII[i]);
+				obj.add(X);
+			}
+		}
+	}
+
+	public static void createParent(MyNode A, MyNode B){
+		MyNode X = new MyNode(A.getLetter()+B.getLetter(), A.getFreq()+B.getFreq());
+		obj.add(X);
+	}
+
 	public static void printArray(int[] Arr){
 		for(int i = 0; i < Arr.length; i++){
 			System.out.print(Arr[i]);
@@ -51,6 +89,7 @@ public class Huffman {
 	}
 
 	static int[] ASCII = new int[128];
+	static ArrayList<MyNode> obj = new ArrayList<MyNode>();
 
     public static void main(String[] args) {
 
@@ -58,7 +97,10 @@ public class Huffman {
 
     	frequencyTable(fileString);
     	printArray(ASCII);
-
+    	initializeHeap(ASCII);
+    	System.out.println(obj);
+    	createParent(obj.get(0), obj.get(1));
+    	System.out.println(obj);
     	System.out.println(fileString.substring(0, 6));
     	System.out.println("Hello");
     }
