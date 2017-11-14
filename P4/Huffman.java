@@ -76,9 +76,9 @@ public class Huffman {
 		}
 	}
 
-	public static void createParent(MyNode A, MyNode B){
+	public static MyNode createParent(MyNode A, MyNode B){
 		MyNode X = new MyNode(A.getLetter()+B.getLetter(), A.getFreq()+B.getFreq());
-		obj.add(X);
+		return X;
 	}
 
 	public static MyNode extractMin(ArrayList<MyNode> Arr){
@@ -100,17 +100,53 @@ public class Huffman {
 
 	public static void buildHeap(ArrayList<MyNode> Arr){
 		for(int i = (Arr.size()/2)-1; i >= 0; i--){
-
+			//System.out.println(obj + "obj");
+			maxHeapify(Arr, i);
 		}
 	}
 
 	public static void maxHeapify(ArrayList<MyNode> Arr, int x){
-
+		int largest = x;
+		int l = 2*x+1;
+		int r = 2*x+2;
+		if(l < Arr.size() && Arr.get(x).getFreq() > Arr.get(x).getFreq()){
+			largest = l;
+		}else{
+			largest = x;
+		}
+		if(r<Arr.size() && Arr.get(r).getFreq() > Arr.get(largest).getFreq()){
+			largest = r;
+		}
+		if(largest != x){
+			// MyNode temp = Arr.get(largest);
+			// Arr.get(largest) = Arr.get(x);
+			// Arr.get(x) = temp;
+			Collections.swap(Arr, 0, Arr.size()-1);
+			maxHeapify(Arr, largest);
+			//System.out.println(Heap + "Heap");
+		}
 	}
 
-	public static void heapInsert(ArrayList<MyNode> Arr, MyNode node){
+	public static void heapInsert(MyNode node){
 		Heap.add(node);
-		MyNode X = Arr.get(0);
+	}
+
+	public static void Huff(){
+		if(obj.size() > 1){
+			MyNode L = extractMin(obj);
+			MyNode R = extractMin(obj);
+			MyNode P = createParent(L, R);
+			obj.add(P); //adds parent back to original arraylist
+			//place these 3 nodes into heap
+			Heap.add(L);
+			Heap.add(R);
+			//Heap.add(P);
+			buildHeap(Heap);
+		}else{
+			MyNode last = extractMin(obj);
+			Heap.add(last);
+			buildHeap(Heap);
+		}
 	}
 
 	public static void printArray(int[] Arr){
@@ -132,10 +168,13 @@ public class Huffman {
     	printArray(ASCII);
     	initializeHeap(ASCII);
     	System.out.println(obj);
-    	createParent(obj.get(0), obj.get(1));
-    	System.out.println(obj);
-    	System.out.println(extractMin(obj));
-    	System.out.println(obj);
+    	while(obj.size()!=0){
+    		System.out.println(obj+"obj");
+    		System.out.println(Heap+"Heap");
+    		Huff();
+    	}
+       	System.out.println(obj);
+    	System.out.println(Heap);
     	System.out.println(fileString.substring(0, 6));
     	System.out.println("Hello");
     }
